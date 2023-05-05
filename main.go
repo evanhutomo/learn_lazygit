@@ -40,4 +40,17 @@ func test(f fn, a string, val int) {
 
 func main() {
 	test(mobil, nama, jumlahUnit)
+
+	// anonymous function
+	func(l int, b int) {
+		fmt.Println(l * b)
+	}(10, 90)
+
+	// closure, anonymous function which able to access variable outside the func body
+	for i := 10.0; i < 100; i += 10.0 {
+		rad := func() float64 {
+			return i * 39.370
+		}()
+		fmt.Println("%.2f Meter = %.2f Inch\n", i, rad)
+	}
 }
