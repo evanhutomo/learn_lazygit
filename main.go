@@ -1,17 +1,43 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
 
-type fn func(int)
+	"github.com/evilsocket/islazy/tui"
+)
 
-func iniFunc(i int) {
-	fmt.Printf("angkanya : %d", i)
+var (
+	nama       = "Veloz"
+	jumlahUnit = 1
+)
+
+type fn func(string, int)
+
+func mobil(n string, i int) {
+	fmt.Printf(tui.Bold("Mobil: "))
+	fmt.Printf("%s\n", n)
+	fmt.Printf(tui.Bold("Unit: "))
+	fmt.Printf("%d\n", i)
+
+	cols := []string{
+		"City",
+		"Temp",
+	}
+
+	rows := [][]string{
+		{"Roma", "16 C"},
+		{"Malang", "25 C"},
+		{"Hamamatsu", "16 C"},
+	}
+
+	tui.Table(os.Stdout, cols, rows)
 }
 
-func test(f fn, val int) {
-	f(val)
+func test(f fn, a string, val int) {
+	f(a, val)
 }
 
 func main() {
-	test(iniFunc, 90)
+	test(mobil, nama, jumlahUnit)
 }
